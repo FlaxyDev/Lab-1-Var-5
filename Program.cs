@@ -116,7 +116,7 @@ namespace Lab1
             catch (Exception e)
             {
                 Console.WriteLine("Error! " + e.Message + "\nPress Enter to exit...");
-                Environment.Exit(0);
+                Console.ReadKey();
             }
         }
     }

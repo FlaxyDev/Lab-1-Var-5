@@ -12,98 +12,31 @@ namespace Lab1
         private double height;
         private int countWindow;
 
-        public Room(double l, double w, double h, int cW)
+        public Room(double tLenght, double tWidth, double tHeight, int tCountWindow)
         {
-            try
-            {
-                if (l <= 0)
-                {
-                    throw new Exception("The length cannot be negative or zero");
-                }
-                else
-                {
-                    lenght = l;
-                    if (w <= 0)
-                    {
-                        throw new Exception("The width cannot be negative or zero");
-                    }
-                    else
-                    {
-                        width = w;
-                        if(h <= 0)
-                        {
-                            throw new Exception("The height cannot be negative or zero");
-                        }
-                        else
-                        {
-                            height = h;
-                            if(cW < 0)
-                            {
-                                throw new Exception("The number of windows cannot be less than zero");
-                            }
-                            else
-                            {
-                                countWindow = cW;
-                            }
-                        }
-                    }
-                }
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("Error! " + e.Message + "\nPress Enter to exit...");
-                Environment.Exit(0);
-            }
+            Lenght = tLenght;
+            Width = tWidth;
+            Height = tHeight;
+            CountWindow = tCountWindow;
         }
         public Room()
         {
-            try
-            {
+
                 Console.WriteLine("Enter the lenght of the room: ");
-                lenght = Convert.ToDouble(Console.ReadLine());
-                if (lenght <= 0)
-                {
-                    throw new Exception("The length cannot be negative or zero");
-                }
+                Lenght = Convert.ToDouble(Console.ReadLine());
                 Console.WriteLine("Enter the width of the room: ");
-                width = Convert.ToDouble(Console.ReadLine());
-                if (width <= 0)
-                {
-                    throw new Exception("The width cannot be negative or zero");
-                }
+                Width = Convert.ToDouble(Console.ReadLine());
                 Console.WriteLine("Enter the height of the room: ");
-                height = Convert.ToDouble(Console.ReadLine());
-                if (height <= 0)
-                {
-                    throw new Exception("The height cannot be negative or zero");
-                }
+                Height = Convert.ToDouble(Console.ReadLine());
                 Console.WriteLine("Enter the count window of the room: ");
-                countWindow = Convert.ToInt32(Console.ReadLine());
-                if(countWindow < 0)
-                {
-                    throw new Exception("The number of windows cannot be less than zero");
-                }
-            }
-            catch (FormatException)
-            {
-                Console.WriteLine("Error! Format Exception! \nPress Enter to exit...");
-                Environment.Exit(0);
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("Error! " + e.Message + "\nPress Enter to exit...");
-                Environment.Exit(0);
-            }
+                CountWindow = Convert.ToInt32(Console.ReadLine());
+            
         }
-        public double getArea() { return lenght * width; }
-        public double getVolume() { return lenght * width * height; }
         public double Lenght
         {
-            get { return lenght; }
+            get => lenght; 
             set
             {
-                try
-                {
                     if (value <= 0)
                     {
                         throw new Exception("The lenght cannot be negative or zero");
@@ -112,21 +45,13 @@ namespace Lab1
                     {
                         lenght = value;
                     }
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine("Error! " + e.Message + "\nPress Enter to exit...");
-                    Environment.Exit(0);
-                }
             }
         }
         public double Height
         {
-            get { return height; }
+            get => height; 
             set
             {
-                try
-                {
                     if (value <= 0)
                     {
                         throw new Exception("The height cannot be negative or zero");
@@ -135,21 +60,13 @@ namespace Lab1
                     {
                         height = value;
                     }
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine("Error! " + e.Message + "\nPress Enter to exit...");
-                    Environment.Exit(0);
-                }
             }
         }
         public double Width
         {
-            get { return width; }
+            get => width; 
             set
             {
-                try
-                {
                     if (value <= 0)
                     {
                         throw new Exception("The width cannot be negative or zero");
@@ -158,48 +75,49 @@ namespace Lab1
                     {
                         width = value;
                     }
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine("Error! " + e.Message + "\nPress Enter to exit...");
-                    Environment.Exit(0);
-                }
             }
         }
         public int CountWindow
         {
-            get { return countWindow; }
+            get => countWindow; 
             set
             {
-                try
-                {
-                    if (value <= 0)
+              
+                if (value <= 0)
                     {
-                        throw new Exception("The number of windows cannot be less than zero");
+                  throw new Exception("The number of windows cannot be less than zero");
                     }
-                    else
+                else
                     {
                         countWindow = value;
                     }
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine("Error! " + e.Message + "\nPress Enter to exit...");
-                    Environment.Exit(0);
-                }
             }
         }
+        public double GetArea() => lenght * width; 
+        public double GetVolume() => lenght * width * height; 
 
     }
     class Program
     {
         static void Main(string[] args)
         {
-            Room r1 = new Room();
-            Console.WriteLine("lenght: " + r1.Lenght);
-            Console.WriteLine("Area: " + r1.getArea());
-            Console.WriteLine("Volume: " + r1.getVolume());
-            r1.Lenght = -1;
+            try
+            {
+                Room r1 = new Room();
+                Console.WriteLine("lenght: " + r1.Lenght);
+                Console.WriteLine("Area: " + r1.GetArea());
+                Console.WriteLine("Volume: " + r1.GetVolume());
+            }
+            catch(FormatException)
+            {
+                Console.WriteLine("Error! Format Exception! \nPress Enter to exit...");
+                Console.ReadKey();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Error! " + e.Message + "\nPress Enter to exit...");
+                Environment.Exit(0);
+            }
         }
     }
 }
